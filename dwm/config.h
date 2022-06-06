@@ -25,10 +25,15 @@ static const char *colors[][3]      = {
 	[SchemeSel]  =	 { col_gray4, col_cyan,   col_cyan },
 	[SchemeWarn] =	 { col_black, col_yellow, col_red },
 	[SchemeUrgent]=	 { col_white, col_red,    col_red },
-   	[SchemeVol]  =   { "#2b2b2b", "#548eeb",  col_red}, //5
-   	[SchemeLoad]  =  { "#2b2b2b", "#be33ff",  col_red}, //6
-   	[SchemeBat]  =   { "#2b2b2b", "#f0ed4d",  col_red}, //7
-   	[SchemeTime]  =  { "#2b2b2b", "#50b38d",  col_red}, //8
+   	// [SchemeVol]  =   { "#2b2b2b", "#548eeb",  col_red}, //5
+   	// [SchemeLoad]  =  { "#2b2b2b", "#be33ff",  col_red}, //6
+   	// [SchemeBat]  =   { "#2b2b2b", "#f0ed4d",  col_red}, //7
+   	// [SchemeTime]  =  { "#2b2b2b", "#50b38d",  col_red}, //8
+   	[SchemeLoad]  =  { "#be33ff", col_gray1, col_red}, //6
+    [SchemeVol]  =   { "#548eeb", col_gray1, col_red}, //5
+   	[SchemeBat]  =   { "#f0ed4d", col_gray1, col_red}, //7
+   	[SchemeTime]  =  { "#50b38d", col_gray1, col_red}, //8
+   	[SchemeLang]  =  { "#f24949", col_gray1, col_red}, //8
 };
 
 /* tagging */
@@ -94,7 +99,7 @@ static Key keys[] = {
 	{ MODKEY,                       XK_t,      setlayout,      {.v = &layouts[0]} },
 	{ MODKEY,                       XK_f,      setlayout,      {.v = &layouts[1]} },
 	{ MODKEY,                       XK_m,      setlayout,      {.v = &layouts[2]} },
-	{ MODKEY,                       XK_space,  setlayout,      {0} },
+	// { MODKEY,                       XK_space,  setlayout,      {0} },
 	{ MODKEY|ShiftMask,             XK_space,  togglefloating, {0} },
 	{ MODKEY,                       XK_0,      view,           {.ui = ~0 } },
 	{ MODKEY|ShiftMask,             XK_0,      tag,            {.ui = ~0 } },

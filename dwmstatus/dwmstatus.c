@@ -193,6 +193,24 @@ get_volume() {
     return smprintf("-1");
 }
 
+char*
+get_lang() {
+    FILE *fp;
+    char buf[3];
+    fp = popen("xkblayout-state print %n", "r");
+    if (fp == NULL) {
+        printf("Failed to run command\n" );
+        exit(1);
+    }
+
+    if (fgets(buf, sizeof(buf), fp) != NULL) {
+        pclose(fp);
+        return smprintf("%s", buf);
+    }
+    pclose(fp);
+    return smprintf("-1");
+}
+
 int
 main(void)
 {
@@ -205,6 +223,7 @@ main(void)
 	char *tmmsk;
 	// char *t0, *t1, *t2;
     char *pvol;
+    char *plang;
 
 	if (!(dpy = XOpenDisplay(NULL))) {
 		fprintf(stderr, "dwmstatus: cannot open display.\n");
@@ -222,9 +241,10 @@ main(void)
 		// t1 = gettemperature("/sys/devices/virtual/hwmon/hwmon2", "temp1_input");
 		// t2 = gettemperature("/sys/devices/virtual/hwmon/hwmon4", "temp1_input");
         pvol = get_volume();
+        plang = get_lang();
 
-		status = smprintf("     \x05  : %s% \x06  : %s \x07   : %s \x08  : %s \x01",
-				pvol, avgs, bat, tmmsk);
+		status = smprintf("      \x05  : %s% \x06  : %s \x07   : %s \x08  : %s \x09   : %s \x01",
+				pvol, avgs, bat, tmmsk, plang);
 		setstatus(status);
 
 		// free(t0);
