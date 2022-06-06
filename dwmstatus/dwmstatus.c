@@ -221,9 +221,9 @@ main(void)
 		// t0 = gettemperature("/sys/devices/virtual/hwmon/hwmon0", "temp1_input");
 		// t1 = gettemperature("/sys/devices/virtual/hwmon/hwmon2", "temp1_input");
 		// t2 = gettemperature("/sys/devices/virtual/hwmon/hwmon4", "temp1_input");
-        	pvol = get_volume();
+        pvol = get_volume();
 
-		status = smprintf("Vol: %s% | Load: %s | Bat: %s | Time:%s",
+		status = smprintf("     \x05  : %s% \x06  : %s \x07   : %s \x08  : %s \x01",
 				pvol, avgs, bat, tmmsk);
 		setstatus(status);
 

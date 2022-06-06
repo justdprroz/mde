@@ -7,8 +7,8 @@ static const unsigned int borderpx  = 1;        /* border pixel of windows */
 static const unsigned int snap      = 32;       /* snap pixel */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
-static const char *fonts[]          = { "monospace:size=10" };
-static const char dmenufont[]       = "monospace:size=10";
+static const char *fonts[]          = { "Caskaydia Cove Nerd Font:size=12" };
+static const char dmenufont[]       = "Caskaydia Cove Nerd Font:size=12";
 static const char col_gray1[]       = "#222222";
 static const char col_gray2[]       = "#444444";
 static const char col_gray3[]       = "#bbbbbb";
@@ -25,6 +25,10 @@ static const char *colors[][3]      = {
 	[SchemeSel]  =	 { col_gray4, col_cyan,   col_cyan },
 	[SchemeWarn] =	 { col_black, col_yellow, col_red },
 	[SchemeUrgent]=	 { col_white, col_red,    col_red },
+   	[SchemeVol]  =   { "#2b2b2b", "#548eeb",  col_red}, //5
+   	[SchemeLoad]  =  { "#2b2b2b", "#be33ff",  col_red}, //6
+   	[SchemeBat]  =   { "#2b2b2b", "#f0ed4d",  col_red}, //7
+   	[SchemeTime]  =  { "#2b2b2b", "#50b38d",  col_red}, //8
 };
 
 /* tagging */
