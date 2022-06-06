@@ -243,7 +243,7 @@ main(void)
         pvol = get_volume();
         plang = get_lang();
 
-		status = smprintf("      \x05  : %s% \x06  : %s \x07   : %s \x08  : %s \x09   : %s \x01",
+		status = smprintf("\x05  : %s% \x06  : %s \x07   : %s \x08  : %s \x09   : %s \x01",
 				pvol, avgs, bat, tmmsk, plang);
 		setstatus(status);
 
