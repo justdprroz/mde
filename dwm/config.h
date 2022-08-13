@@ -82,9 +82,9 @@ static const char *upvol[]   = { "/usr/bin/pactl", "set-sink-volume", "0", "+5%"
 static const char *downvol[] = { "/usr/bin/pactl", "set-sink-volume", "0", "-5%",     NULL };
 static const char *mutevol[] = { "/usr/bin/pactl", "set-sink-mute",   "0", "toggle",  NULL };
 
-static const char *previous[] = { "/usr/bin/playerctl", "play-pause", NULL};
+static const char *previous[] = { "/usr/bin/playerctl", "previous", NULL};
 static const char *play_pause[] = { "/usr/bin/playerctl", "play-pause", NULL};
-static const char *next[] = { "/usr/bin/playerctl", "play-pause", NULL};
+static const char *next[] = { "/usr/bin/playerctl", "next", NULL};
 
 static Key keys[] = {
 	/* modifier                     key        function        argument */
