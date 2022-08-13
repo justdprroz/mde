@@ -13,5 +13,10 @@ dwmstatus 2>&1 >/dev/null &
 eval $(gnome-keyring-daemon --start)
 export SSH_AUTH_SOCK
 
+# set screen resolution 
+xrandr --addmode Virtual-1 1920x1080
+xrandr --output Virtual-1 --mode 1920x1080
+
 # start dwm
 exec dbus-launch dwm
+

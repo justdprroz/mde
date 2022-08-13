@@ -17,7 +17,6 @@
 
 #include <X11/Xlib.h>
 
-char *tzargentina = "America/Buenos_Aires";
 char *tzutc = "UTC";
 char *tzmoscow = "Europe/Moscow";
 
@@ -217,13 +216,9 @@ main(void)
 	char *status;
 	char *avgs;
 	char *bat;
-	// char *bat1;
-	// char *tmar;
-	// char *tmutc;
 	char *tmmsk;
-	// char *t0, *t1, *t2;
-    char *pvol;
-    char *plang;
+    	char *pvol;
+    	char *plang;
 
 	if (!(dpy = XOpenDisplay(NULL))) {
 		fprintf(stderr, "dwmstatus: cannot open display.\n");
@@ -233,31 +228,19 @@ main(void)
 	for (;;sleep(0.1)) {
 		avgs = loadavg();
 		bat = getbattery("/sys/class/power_supply/BAT1");
-		// bat1 = getbattery("/sys/class/power_supply/BAT1");
-		// tmar = mktimes("%H:%M", tzargentina);
-		// tmutc = mktimes("%H:%M", tzutc);
 		tmmsk = mktimes("%H:%M %d/%b/%Y", tzmoscow);
-		// t0 = gettemperature("/sys/devices/virtual/hwmon/hwmon0", "temp1_input");
-		// t1 = gettemperature("/sys/devices/virtual/hwmon/hwmon2", "temp1_input");
-		// t2 = gettemperature("/sys/devices/virtual/hwmon/hwmon4", "temp1_input");
-        pvol = get_volume();
-        plang = get_lang();
+        	pvol = get_volume();
+        	plang = get_lang();
 
 		status = smprintf("\x05  : %s% \x06  : %s \x07   : %s \x08  : %s \x09   : %s \x01",
 				pvol, avgs, bat, tmmsk, plang);
 		setstatus(status);
 
-		// free(t0);
-		// free(t1);
-		// free(t2);
 		free(avgs);
 		free(bat);
-		// free(bat1);
-		// free(tmar);
-		// free(tmutc);
 		free(tmmsk);
 		free(status);
-        free(pvol);
+		free(pvol);
 	}
 
 	XCloseDisplay(dpy);
