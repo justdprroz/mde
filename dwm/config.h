@@ -30,7 +30,7 @@ static const char *colors[][3]      = {
    	// [SchemeBat]  =   { "#2b2b2b", "#f0ed4d",  col_red}, //7
    	// [SchemeTime]  =  { "#2b2b2b", "#50b38d",  col_red}, //8
    	[SchemeLoad]  =  { "#be33ff", col_gray1, col_red}, //6
-    [SchemeVol]  =   { "#548eeb", col_gray1, col_red}, //5
+	[SchemeVol]  =   { "#548eeb", col_gray1, col_red}, //5
    	[SchemeBat]  =   { "#f0ed4d", col_gray1, col_red}, //7
    	[SchemeTime]  =  { "#50b38d", col_gray1, col_red}, //8
    	[SchemeLang]  =  { "#f24949", col_gray1, col_red}, //8
@@ -46,7 +46,7 @@ static const Rule rules[] = {
 	 */
 	/* class      instance    title       tags mask     isfloating   monitor */
 	{ "Gimp",     NULL,       NULL,       0,            1,           -1 },
-	{ "Firefox",  NULL,       NULL,       1 << 8,       0,           -1 },
+	{ "Firefox",  NULL,       NULL,       2,       	    0,           -1 },
 };
 
 /* layout(s) */
@@ -81,6 +81,10 @@ static const char *termcmd[]  = { "alacritty", NULL };
 static const char *upvol[]   = { "/usr/bin/pactl", "set-sink-volume", "0", "+5%",     NULL };
 static const char *downvol[] = { "/usr/bin/pactl", "set-sink-volume", "0", "-5%",     NULL };
 static const char *mutevol[] = { "/usr/bin/pactl", "set-sink-mute",   "0", "toggle",  NULL };
+
+static const char *previous[] = { "/usr/bin/playerctl", "play-pause", NULL};
+static const char *play_pause[] = { "/usr/bin/playerctl", "play-pause", NULL};
+static const char *next[] = { "/usr/bin/playerctl", "play-pause", NULL};
 
 static Key keys[] = {
 	/* modifier                     key        function        argument */
@@ -117,9 +121,12 @@ static Key keys[] = {
 	TAGKEYS(                        XK_8,                      7)
 	TAGKEYS(                        XK_9,                      8)
 	{ MODKEY|ShiftMask,             XK_q,      quit,           {0} },
-	{ 0,                       XF86XK_AudioLowerVolume, spawn, {.v = downvol } },
-	{ 0,                       XF86XK_AudioMute, spawn, {.v = mutevol } },
-	{ 0,                       XF86XK_AudioRaiseVolume, spawn, {.v = upvol   } },
+	{ 0,                            XF86XK_AudioLowerVolume,    spawn, {.v = downvol } },
+	{ 0,                            XF86XK_AudioMute,           spawn, {.v = mutevol } },
+	{ 0,                            XF86XK_AudioRaiseVolume,    spawn, {.v = upvol   } },
+	{ 0,                            XF86XK_AudioPlay,           spawn, {.v = play_pause } },
+	{ 0,                            XF86XK_AudioPrev,	    spawn, {.v = previous } },
+	{ 0,                            XF86XK_AudioNext,           spawn, {.v = next   } },
 };
 
 /* button definitions */
