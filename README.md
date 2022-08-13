@@ -1,1 +1,1 @@
-# mde
+suckless stuff with some dotfiles
