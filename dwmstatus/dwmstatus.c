@@ -260,6 +260,10 @@ get_player_status()
     if (fgets(buf, sizeof(buf), fp) != NULL)
     {
         pclose(fp);
+        int l = strlen(buf);
+        if (buf[l - 1] == '\n') {
+            buf[l - 1] = '\0';
+        }
         return smprintf("%s", buf);
     }
     pclose(fp);
@@ -281,6 +285,10 @@ get_song_name()
     if (fgets(buf, sizeof(buf), fp) != NULL)
     {
         pclose(fp);
+        int l = strlen(buf);
+        if (buf[l - 1] == '\n') {
+            buf[l - 1] = '\0';
+        }
         return smprintf("%s", buf);
     }
     pclose(fp);
@@ -337,11 +345,11 @@ int main(void)
 
         // media name
         status = add_to_string(status, "\x05");
-        int l = strlen(media);
-        media[l - 1] = '\0';
-        char *media_info = smprintf("  : %s | %s ", media, player);
-        status = add_to_string(status, media_info);
-        free(media_info);
+        if (strcmp(media, "-1") && strcmp(player, "-1")) {
+            char *media_info = smprintf("  : %s | %s ", media, player);
+            status = add_to_string(status, media_info);
+            free(media_info);
+        }
 
         // volume
         status = add_to_string(status, "\x06");
