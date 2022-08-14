@@ -59,7 +59,7 @@
 
 /* enums */
 enum { CurNormal, CurResize, CurMove, CurLast }; /* cursor */
-enum { SchemeNorm, SchemeSel, SchemeWarn, SchemeUrgent, 
+enum { SchemeNorm, SchemeSel, SchemeWarn, SchemeUrgent, SchemeMedia,
         SchemeVol, SchemeLoad, SchemeBat, SchemeTime, SchemeLang }; /* color schemes */
 enum { NetSupported, NetWMName, NetWMState, NetWMCheck,
        NetWMFullscreen, NetActiveWindow, NetWMWindowType,
@@ -718,8 +718,15 @@ drawbar(Monitor *m)
 		drw_setscheme(drw, scheme[SchemeNorm]);
         
         // stext[strlen(stext) - 6] = '\0';
+        int parts_amount = 7;
+        char* partstring = malloc(parts_amount + 1);
+        for(int i = 0; i < parts_amount; i++) {
+            partstring[i] = ' ';
+        }
+        partstring[parts_amount] = '\0';
+		tw = TEXTW(stext) - lrpad + 2 - drw_fontset_getwidth(drw, partstring); /* 2px right padding */
+        free(partstring);
 
-		tw = TEXTW(stext) - lrpad + 2 - drw_fontset_getwidth(drw, "      "); /* 2px right padding */
 		while (1) {
 			if ((unsigned int)*ts > LENGTH(colors)) { ts++; continue ; }
 			ctmp = *ts;

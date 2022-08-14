@@ -25,15 +25,12 @@ static const char *colors[][3]      = {
 	[SchemeSel]  =	 { col_gray4, col_cyan,   col_cyan },
 	[SchemeWarn] =	 { col_black, col_yellow, col_red },
 	[SchemeUrgent]=	 { col_white, col_red,    col_red },
-   	// [SchemeVol]  =   { "#2b2b2b", "#548eeb",  col_red}, //5
-   	// [SchemeLoad]  =  { "#2b2b2b", "#be33ff",  col_red}, //6
-   	// [SchemeBat]  =   { "#2b2b2b", "#f0ed4d",  col_red}, //7
-   	// [SchemeTime]  =  { "#2b2b2b", "#50b38d",  col_red}, //8
-   	[SchemeLoad]  =  { "#be33ff", col_gray1, col_red}, //6
-	[SchemeVol]  =   { "#548eeb", col_gray1, col_red}, //5
-   	[SchemeBat]  =   { "#f0ed4d", col_gray1, col_red}, //7
-   	[SchemeTime]  =  { "#50b38d", col_gray1, col_red}, //8
-   	[SchemeLang]  =  { "#f24949", col_gray1, col_red}, //8
+    [SchemeMedia]  = { "#ffe32e", col_gray1, col_red}, //5
+	[SchemeVol]  =   { "#548eeb", col_gray1, col_red}, //6
+   	[SchemeLoad]  =  { "#be33ff", col_gray1, col_red}, //7
+   	[SchemeBat]  =   { "#f0ed4d", col_gray1, col_red}, //8
+   	[SchemeTime]  =  { "#50b38d", col_gray1, col_red}, //9
+   	[SchemeLang]  =  { "#f24949", col_gray1, col_red}, //10
 };
 
 /* tagging */
@@ -46,7 +43,6 @@ static const Rule rules[] = {
 	 */
 	/* class      instance    title       tags mask     isfloating   monitor */
 	{ "Firefox",  NULL,       NULL,       2,       	    0,           -1 },
-	{ "Code",  NULL,       NULL,       3,       	    0,           -1 },
 };
 
 /* layout(s) */
