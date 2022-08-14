@@ -1,0 +1,25 @@
+import os
+from PIL import Image
+
+from os import listdir
+from os.path import isfile, join
+
+import random
+
+wallpaper_directory = os.path.expanduser("~/Pictures/wallpapers");
+all_images = []
+for image in listdir(wallpaper_directory):
+    if isfile(join(wallpaper_directory, image)):
+        if image.lower().endswith((".png", ".jpg")):
+            all_images.append(image)
+
+image1 = Image.open(join(wallpaper_directory, random.choice(all_images)))
+image1 = image1.resize((1920, 1080))
+image2 = Image.open(join(wallpaper_directory, random.choice(all_images)))
+image2 = image2.resize((1680, 1050))
+
+new_image = Image.new('RGB', (1920+1680, 1080), (250, 250, 250))
+new_image.paste(image1, (0, 0))
+new_image.paste(image2, (1920, 0))
+new_image.save(join(wallpaper_directory, "screen_wallpaper.jpg"), "JPEG")
+os.system(f"feh --bg-fill {join(wallpaper_directory, 'screen_wallpaper.jpg')}")

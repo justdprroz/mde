@@ -45,8 +45,8 @@ static const Rule rules[] = {
 	 *	WM_NAME(STRING) = title
 	 */
 	/* class      instance    title       tags mask     isfloating   monitor */
-	{ "Gimp",     NULL,       NULL,       0,            1,           -1 },
 	{ "Firefox",  NULL,       NULL,       2,       	    0,           -1 },
+	{ "Code",  NULL,       NULL,       3,       	    0,           -1 },
 };
 
 /* layout(s) */
@@ -77,6 +77,9 @@ static const Layout layouts[] = {
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
 static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, NULL };
 static const char *termcmd[]  = { "alacritty", NULL };
+static const char *files[] = { "nautilus", NULL };
+
+static const char *swpwallpaper[] = { "wallpapergen", NULL };
 
 static const char *upvol[]   = { "/usr/bin/pactl", "set-sink-volume", "0", "+5%",     NULL };
 static const char *downvol[] = { "/usr/bin/pactl", "set-sink-volume", "0", "-5%",     NULL };
@@ -125,8 +128,10 @@ static Key keys[] = {
 	{ 0,                            XF86XK_AudioMute,           spawn, {.v = mutevol } },
 	{ 0,                            XF86XK_AudioRaiseVolume,    spawn, {.v = upvol   } },
 	{ 0,                            XF86XK_AudioPlay,           spawn, {.v = play_pause } },
-	{ 0,                            XF86XK_AudioPrev,	    spawn, {.v = previous } },
+	{ 0,                            XF86XK_AudioPrev,	        spawn, {.v = previous } },
 	{ 0,                            XF86XK_AudioNext,           spawn, {.v = next   } },
+	{ MODKEY,                       XK_e,                       spawn, {.v = files   } },
+	{ MODKEY,                       XK_w,                       spawn, {.v = swpwallpaper   } },
 };
 
 /* button definitions */
