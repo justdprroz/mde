@@ -246,6 +246,27 @@ get_cpu()
 }
 
 char *
+get_player_status()
+{
+    FILE *fp;
+    char buf[128];
+    fp = popen("getplayerstatus", "r");
+    if (fp == NULL)
+    {
+        printf("Failed to run command\n");
+        exit(1);
+    }
+
+    if (fgets(buf, sizeof(buf), fp) != NULL)
+    {
+        pclose(fp);
+        return smprintf("%s", buf);
+    }
+    pclose(fp);
+    return smprintf("-1");
+}
+
+char *
 get_song_name()
 {
     FILE *fp;
@@ -285,6 +306,7 @@ int main(void)
     char *bat;
     char *tmmsk;
 
+    char *player;
     char *media;
 
     char *vol;
@@ -303,6 +325,7 @@ int main(void)
         bat = getbattery("/sys/class/power_supply/BAT1");
         tmmsk = mktimes("%H:%M:%S %d/%b/%Y", tzmoscow);
 
+        player = get_player_status();
         media = get_song_name();
         vol = get_volume();
         lang = get_lang();
@@ -314,10 +337,11 @@ int main(void)
 
         // media name
         status = add_to_string(status, "\x05");
-        char *media_info = smprintf("  : %s", media);
+        int l = strlen(media);
+        media[l - 1] = '\0';
+        char *media_info = smprintf("  : %s | %s ", media, player);
         status = add_to_string(status, media_info);
         free(media_info);
-
 
         // volume
         status = add_to_string(status, "\x06");
