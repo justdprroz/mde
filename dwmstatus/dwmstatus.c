@@ -207,7 +207,7 @@ char *
 get_lang()
 {
     FILE *fp;
-    char buf[3];
+    char buf[16];
     fp = popen("xkblayout-state print %n", "r");
     if (fp == NULL)
     {
@@ -267,7 +267,7 @@ get_player_status()
         return smprintf("%s", buf);
     }
     pclose(fp);
-    return smprintf("-1");
+    return smprintf("No player running");
 }
 
 char *
@@ -292,7 +292,7 @@ get_song_name()
         return smprintf("%s", buf);
     }
     pclose(fp);
-    return smprintf("-1");
+    return smprintf("No Media is playing");
 }
 
 char *add_to_string(char *dest, char *src)
@@ -327,7 +327,7 @@ int main(void)
         return 1;
     }
 
-    for (;; usleep(500 * 1000))
+    for (;; usleep(100 * 1000))
     {
         avgs = loadavg();
         bat = getbattery("/sys/class/power_supply/BAT1");
@@ -345,11 +345,9 @@ int main(void)
 
         // media name
         status = add_to_string(status, "\x05");
-        if (strcmp(media, "-1") && strcmp(player, "-1")) {
-            char *media_info = smprintf("  : %s | %s ", media, player);
-            status = add_to_string(status, media_info);
-            free(media_info);
-        }
+	    char *media_info = smprintf("  : %s | %s ", media, player);
+        status = add_to_string(status, media_info);
+        free(media_info);
 
         // volume
         status = add_to_string(status, "\x06");
@@ -385,7 +383,7 @@ int main(void)
         free(lang_info);
 
         // end status
-        status = add_to_string(status, "\x01");
+        // status = add_to_string(status, "\x01");
 
         // status = smprintf("  \x06  \x07  \x08  \x09  \x01",
         //                     vol,
