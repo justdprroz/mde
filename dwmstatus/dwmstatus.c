@@ -239,7 +239,7 @@ get_cpu()
     if (fgets(buf, sizeof(buf), fp) != NULL)
     {
         pclose(fp);
-        return smprintf("%.1f", atof(buf));
+        return smprintf("%04.1f", atof(buf));
     }
     pclose(fp);
     return smprintf("-1");
