@@ -1,6 +1,17 @@
---- dmenu.c
-+++ dmenu.c
-@@ -445,6 +447,27 @@ insert:
+diff --git a/dmenu.c b/dmenu.c
+index 7361377..fcec79b 100644
+--- a/dmenu.c
++++ b/dmenu.c
+@@ -317,6 +317,8 @@ keypress(XKeyEvent *ev)
+ 	int len;
+ 	KeySym ksym;
+ 	Status status;
++	int i, offscreen = 0;
++	struct item *tmpsel;
+ 
+ 	len = XmbLookupString(xic, ev, buf, sizeof buf, &ksym, &status);
+ 	switch (status) {
+@@ -443,6 +445,27 @@ insert:
  		calcoffsets();
  		break;
  	case XK_Left:
@@ -28,7 +39,7 @@
  		if (cursor > 0 && (!sel || !sel->left || lines > 0)) {
  			cursor = nextrune(-1);
  			break;
-@@ -481,6 +504,27 @@ insert:
+@@ -479,6 +502,27 @@ insert:
  			sel->out = 1;
  		break;
  	case XK_Right:
