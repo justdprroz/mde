@@ -275,7 +275,8 @@ get_song_name()
 {
     FILE *fp;
     char buf[128];
-    fp = popen("getmedianame", "r");
+    // fp = popen("getmedianame", "r");
+    fp = popen("playerctl --player playerctld  metadata --format \"{{ artist }} - {{ title }}\"", "r");
     if (fp == NULL)
     {
         printf("Failed to run command\n");
@@ -327,7 +328,7 @@ int main(void)
         return 1;
     }
 
-    for (;; usleep(100 * 1000))
+    for (;; usleep(500 * 1000))
     {
         avgs = loadavg();
         bat = getbattery("/sys/class/power_supply/BAT1");
@@ -344,19 +345,19 @@ int main(void)
         status[0] = '\0';
 
         // media name
-        // status = add_to_string(status, "\x05");
+        status = add_to_string(status, "^c#FFE32E^");
 	    char *media_info = smprintf("  : %s | %s ", media, player);
         status = add_to_string(status, media_info);
         free(media_info);
 
         // volume
-        // status = add_to_string(status, "\x06");
+        status = add_to_string(status, "^c#548EEB^");
         char *volume_info = smprintf("  : %s%% ", vol);
         status = add_to_string(status, volume_info);
         free(volume_info);
 
         // load
-        // status = add_to_string(status, "\x07");
+        status = add_to_string(status, "^c#BE33FF^");
         char *load_info = smprintf("  : %s%% ", load);
         status = add_to_string(status, load_info);
         free(load_info);
@@ -371,19 +372,19 @@ int main(void)
         };
 
         // time
-        // status = add_to_string(status, "\x09");
+        status = add_to_string(status, "^c#50B38D^");
         char *time_info = smprintf("  : %s ", tmmsk);
         status = add_to_string(status, time_info);
         free(time_info);
 
         // layout
-        // status = add_to_string(status, "\x0a");
+        status = add_to_string(status, "^c#F24949^");
         char *lang_info = smprintf("   : %s ", lang);
         status = add_to_string(status, lang_info);
         free(lang_info);
 
         // end status
-        // status = add_to_string(status, "\x01");
+        status = add_to_string(status, "^c#EEEEEE^");
 
         // status = smprintf("  \x06  \x07  \x08  \x09  \x01",
         //                     vol,
