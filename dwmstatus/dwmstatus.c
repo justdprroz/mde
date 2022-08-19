@@ -344,25 +344,25 @@ int main(void)
         status[0] = '\0';
 
         // media name
-        status = add_to_string(status, "\x05");
+        // status = add_to_string(status, "\x05");
 	    char *media_info = smprintf("  : %s | %s ", media, player);
         status = add_to_string(status, media_info);
         free(media_info);
 
         // volume
-        status = add_to_string(status, "\x06");
+        // status = add_to_string(status, "\x06");
         char *volume_info = smprintf("  : %s%% ", vol);
         status = add_to_string(status, volume_info);
         free(volume_info);
 
         // load
-        status = add_to_string(status, "\x07");
+        // status = add_to_string(status, "\x07");
         char *load_info = smprintf("  : %s%% ", load);
         status = add_to_string(status, load_info);
         free(load_info);
 
         // battery
-        status = add_to_string(status, "\x08");
+        // status = add_to_string(status, "\x08");
         if (!strcmp(bat, " "))
         {
             char *battery_info = smprintf("   : %s ", bat);
@@ -371,13 +371,13 @@ int main(void)
         };
 
         // time
-        status = add_to_string(status, "\x09");
+        // status = add_to_string(status, "\x09");
         char *time_info = smprintf("  : %s ", tmmsk);
         status = add_to_string(status, time_info);
         free(time_info);
 
         // layout
-        status = add_to_string(status, "\x0a");
+        // status = add_to_string(status, "\x0a");
         char *lang_info = smprintf("   : %s ", lang);
         status = add_to_string(status, lang_info);
         free(lang_info);

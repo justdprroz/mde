@@ -4,38 +4,31 @@
 
 /* appearance */
 static const unsigned int borderpx  = 2;        /* border pixel of windows */
+static const unsigned int gappx     = 5;        /* gaps between windows */
 static const unsigned int snap      = 32;       /* snap pixel */
-static const int showbar            = 1;        /* 0 means no bar */
-static const int topbar             = 1;        /* 0 means bottom bar */
-static const unsigned int gappx     = 5;
-static const char *fonts[]          = { "Caskaydia Cove Nerd Font:size=10" };
+static const unsigned int systraypinning = 0;   /* 0: sloppy systray follows selected monitor, >0: pin systray to monitor X */
+static const unsigned int systrayonleft = 0;   	/* 0: systray in the right corner, >0: systray on left of status text */
+static const unsigned int systrayspacing = 2;   /* systray spacing */
+static const int systraypinningfailfirst = 1;   /* 1: if pinning fails, display systray on the first monitor, False: display systray on the last monitor*/
+static const int showsystray        = 1;     /* 0 means no systray */
+static const int showbar            = 1;     /* 0 means no bar */
+static const int topbar             = 1;     /* 0 means bottom bar */
+static const char *fonts[]          = { "Caskaydia Cove Nerd Font:size=10", "Cascadia Code:size=10"};
 static const char dmenufont[]       = "Caskaydia Cove Nerd Font:size=14";
 static const char col_gray1[]       = "#222222";
 static const char col_gray2[]       = "#444444";
 static const char col_gray3[]       = "#bbbbbb";
 static const char col_gray4[]       = "#eeeeee";
 static const char col_breeze[]      = "#055749";
-static const char col_black[]       = "#000000";
-static const char col_red[]         = "#ff0000";
-static const char col_yellow[]      = "#ffff00";
-static const char col_white[]       = "#ffffff";
-
+static const char col_cyan[]        = "#005577";
 static const char *colors[][3]      = {
-	/*					fg         bg          border   */
-	[SchemeNorm] =	 { col_gray4, col_gray1,  col_gray2 },
-	[SchemeSel]  =	 { col_gray4, col_breeze,   col_breeze },
-	[SchemeWarn] =	 { col_black, col_yellow, col_red },
-	[SchemeUrgent]=	 { col_white, col_red,    col_red },
-    [SchemeMedia]  = { "#ffe32e", col_gray1, col_red}, //5
-	[SchemeVol]  =   { "#548eeb", col_gray1, col_red}, //6
-   	[SchemeLoad]  =  { "#be33ff", col_gray1, col_red}, //7
-   	[SchemeBat]  =   { "#f0ed4d", col_gray1, col_red}, //8
-   	[SchemeTime]  =  { "#50b38d", col_gray1, col_red}, //9
-   	[SchemeLang]  =  { "#f24949", col_gray1, col_red}, //10
+	/*               fg         bg         border   */
+	[SchemeNorm] = { col_gray3, col_gray1, col_gray2 },
+	[SchemeSel]  = { col_gray4, col_breeze,  col_breeze  },
 };
 
 /* tagging */
-static const char *tags[] = { " ", " ", " ", " ", " ", " ", "7", "8", "9" };
+static const char *tags[] = { "1", "2", "3", "4", "5", "6", "7", "8", "9" };
 
 static const Rule rules[] = {
 	/* xprop(1):
@@ -43,13 +36,13 @@ static const Rule rules[] = {
 	 *	WM_NAME(STRING) = title
 	 */
 	/* class      instance    title       tags mask     isfloating   monitor */
-	{ "Firefox",  NULL,       NULL,       2,       	    0,           -1 },
+	{ "Firefox",  NULL,       NULL,       2,       0,           -1 },
 };
 
 /* layout(s) */
 static const float mfact     = 0.5; /* factor of master area size [0.05..0.95] */
 static const int nmaster     = 1;    /* number of clients in master area */
-static const int resizehints = 1;    /* 1 means respect size hints in tiled resizals */
+static const int resizehints = 0;    /* 1 means respect size hints in tiled resizals */
 static const int lockfullscreen = 1; /* 1 will force focus on the fullscreen window */
 
 static const Layout layouts[] = {
@@ -74,13 +67,13 @@ static const Layout layouts[] = {
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
 static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_breeze, "-sf", col_gray4, NULL };
 static const char *termcmd[]  = { "alacritty", NULL };
-static const char *files[] = { "thunar", NULL };
+static const char *filescmd[] = { "thunar", NULL };
 
-static const char *swpwallpaper[] = { "wallpapergen", NULL };
+static const char *swap_wallpaper[] = { "wallpapergen", NULL };
 
-static const char *upvol[]   = { "/usr/bin/pactl", "set-sink-volume", "alsa_output.pci-0000_2b_00.4.analog-stereo", "+5%",     NULL };
-static const char *downvol[] = { "/usr/bin/pactl", "set-sink-volume", "alsa_output.pci-0000_2b_00.4.analog-stereo", "-5%",     NULL };
-static const char *mutevol[] = { "/usr/bin/pactl", "set-sink-mute",   "alsa_output.pci-0000_2b_00.4.analog-stereo", "toggle",  NULL };
+static const char *up_vol[]   = { "/usr/bin/pactl", "set-sink-volume", "alsa_output.pci-0000_2b_00.4.analog-stereo", "+5%",     NULL };
+static const char *down_vol[] = { "/usr/bin/pactl", "set-sink-volume", "alsa_output.pci-0000_2b_00.4.analog-stereo", "-5%",     NULL };
+static const char *mute_vol[] = { "/usr/bin/pactl", "set-sink-mute",   "alsa_output.pci-0000_2b_00.4.analog-stereo", "toggle",  NULL };
 
 static const char *previous[] = { "/usr/bin/playerctl", "previous", NULL};
 static const char *play_pause[] = { "/usr/bin/playerctl", "play-pause", NULL};
@@ -121,22 +114,22 @@ static Key keys[] = {
 	TAGKEYS(                        XK_8,                      7)
 	TAGKEYS(                        XK_9,                      8)
 	{ MODKEY|ShiftMask,             XK_q,      quit,           {0} },
-	{ 0,                            XF86XK_AudioLowerVolume,    spawn, {.v = downvol } },
-	{ 0,                            XF86XK_AudioMute,           spawn, {.v = mutevol } },
-	{ 0,                            XF86XK_AudioRaiseVolume,    spawn, {.v = upvol   } },
+	{ 0,                            XF86XK_AudioLowerVolume,    spawn, {.v = down_vol } },
+	{ 0,                            XF86XK_AudioMute,           spawn, {.v = mute_vol } },
+	{ 0,                            XF86XK_AudioRaiseVolume,    spawn, {.v = up_vol   } },
 	{ 0,                            XF86XK_AudioPlay,           spawn, {.v = play_pause } },
 	{ 0,                            XF86XK_AudioPrev,	        spawn, {.v = previous } },
 	{ 0,                            XF86XK_AudioNext,           spawn, {.v = next   } },
-	{ MODKEY,                       XK_e,                       spawn, {.v = files   } },
-	{ MODKEY,                       XK_w,                       spawn, {.v = swpwallpaper   } },
+	{ MODKEY,                       XK_e,                       spawn, {.v = filescmd   } },
+	{ MODKEY,                       XK_w,                       spawn, {.v = swap_wallpaper   } },
 };
 
 /* button definitions */
 /* click can be ClkTagBar, ClkLtSymbol, ClkStatusText, ClkWinTitle, ClkClientWin, or ClkRootWin */
 static Button buttons[] = {
 	/* click                event mask      button          function        argument */
-	{ ClkLtSymbol,          0,              Button1,        setlayout,      {0} },
-	{ ClkLtSymbol,          0,              Button3,        setlayout,      {.v = &layouts[2]} },
+	{ ClkTagBar,            MODKEY,         Button1,        tag,            {0} },
+	{ ClkTagBar,            MODKEY,         Button3,        toggletag,      {0} },
 	{ ClkWinTitle,          0,              Button2,        zoom,           {0} },
 	{ ClkStatusText,        0,              Button2,        spawn,          {.v = termcmd } },
 	{ ClkClientWin,         MODKEY,         Button1,        movemouse,      {0} },
