@@ -78,9 +78,9 @@ static const char *files[] = { "thunar", NULL };
 
 static const char *swpwallpaper[] = { "wallpapergen", NULL };
 
-static const char *upvol[]   = { "/usr/bin/pactl", "set-sink-volume", "0", "+5%",     NULL };
-static const char *downvol[] = { "/usr/bin/pactl", "set-sink-volume", "0", "-5%",     NULL };
-static const char *mutevol[] = { "/usr/bin/pactl", "set-sink-mute",   "0", "toggle",  NULL };
+static const char *upvol[]   = { "/usr/bin/pactl", "set-sink-volume", "alsa_output.pci-0000_2b_00.4.analog-stereo", "+5%",     NULL };
+static const char *downvol[] = { "/usr/bin/pactl", "set-sink-volume", "alsa_output.pci-0000_2b_00.4.analog-stereo", "-5%",     NULL };
+static const char *mutevol[] = { "/usr/bin/pactl", "set-sink-mute",   "alsa_output.pci-0000_2b_00.4.analog-stereo", "toggle",  NULL };
 
 static const char *previous[] = { "/usr/bin/playerctl", "previous", NULL};
 static const char *play_pause[] = { "/usr/bin/playerctl", "play-pause", NULL};
