@@ -3,6 +3,7 @@ from os import system, listdir
 from os.path import isfile, join, expanduser
 from random import choice
 from PIL import Image
+from screeninfo import get_monitors
 
 # calculate dimensions of all screens together
 def calculate_wallpaper_geometry(monitors):
@@ -21,11 +22,10 @@ for image in listdir(wallpaper_directory):
         if image.lower().endswith((".png", ".jpg")):
             all_images.append(image)
 
-
 # Set geometry of your monitors [offset_x, offset_y, width, height]
 monitors = [
-    [0,     0,  1920,   1080],
-    [1920,  0,  1680,   1050]
+    [m.x, m.y, m.width, m.height]
+    for m in get_monitors()
 ]
 
 # create wallpaper and paste images to it
