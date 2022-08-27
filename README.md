@@ -53,3 +53,5 @@
 - music:
   - spotify
   - [cider.sh](https://github.com/ciderapp/Cider) (Open Source client for Apple Music)
+- Themes:
+  - [Nordic](https://github.com/EliverLara/Nordic)
