@@ -40,9 +40,9 @@
   - brave
 - file managers:
   - nemo
-  - thunar (default to dwm)
+  - thunar (Win + E)
 - terminal:
-  - [alacritty](https://github.com/alacritty/alacritty) (default to dwm)
+  - [alacritty](https://github.com/alacritty/alacritty) (Win + Enter)
 - music visualizer:
   - [cava](https://github.com/karlstav/cava)
 - editors:
@@ -53,3 +53,5 @@
 - music:
   - spotify
   - [cider.sh](https://github.com/ciderapp/Cider) (Open Source client for Apple Music)
+- Themes:
+  - [Nordic](https://github.com/EliverLara/Nordic)
