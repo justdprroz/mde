@@ -1,55 +1,190 @@
 font:
   normal:
-    family: Caskaydia Cove Nerd Font
+    family: Monospace
     style: Regular
 
   bold:
-    family: Caskaydia Cove Nerd Font
+    family: Monospace
     style: Bold
 
   italic:
-    family: Caskaydia Cove Nerd Font
+    family: Monospace
     style: Italic
 
   bold_italic:
-    family: Caskaydia Cove Nerd Font
+    family: Monospace
     style: Bold Italic
 
   size: 12
 
+schemes:
+  vscode: &vscode
+    primary:
+      background: "#1e1e1e" #Background from Dark Theme
+      foreground: "#cccccc"
 
-# VSCode's integrated terminal default colors
-# Primary and dimmed colors needed
+    # Selection colors
+    selection:
+      text: CellForeground
+      background: "#565656"
 
-colors:
-  # Default colors
-  primary:
-    background: '#1e1e1e' #Background from Dark Theme
-    foreground: '#cccccc'
+    # Normal colors
+    normal:
+      black: "#000000"
+      red: "#cd3131"
+      green: "#0dbc79"
+      yellow: "#e5e510"
+      blue: "#2472c8"
+      magenta: "#bc3fbc"
+      cyan: "#11a8cd"
+      white: "#e5e5e5"
 
-  # Selection colors
-  selection:
-    text: CellForeground
-    background: '#565656'
+    # Bright colors
+    bright:
+      black: "#666666"
+      red: "#f14c4c"
+      green: "#23d18b"
+      yellow: "#f5f543"
+      blue: "#3b8eea"
+      magenta: "#d670d6"
+      cyan: "#29b8db"
+      white: "#e5e5e5"
 
-  # Normal colors
-  normal:
-    black:   '#000000'
-    red:     '#cd3131'
-    green:   '#0dbc79'
-    yellow:  '#e5e510'
-    blue:    '#2472c8'
-    magenta: '#bc3fbc'
-    cyan:    '#11a8cd'
-    white:   '#e5e5e5'
+  konsole: &konsole
+    primary:
+      background: "#232627"
+      foreground: "#fcfcfc"
 
-  # Bright colors
-  bright:
-    black:   '#666666'
-    red:     '#f14c4c'
-    green:   '#23d18b'
-    yellow:  '#f5f543'
-    blue:    '#3b8eea'
-    magenta: '#d670d6'
-    cyan:    '#29b8db'
-    white:   '#e5e5e5'
+      dim_foreground: "#eff0f1"
+      bright_foreground: "#ffffff"
+      dim_background: "#31363b"
+      bright_background: "#000000"
+
+    # Normal colors
+    normal:
+      black: "#000000"
+      red: "#ed1515"
+      green: "#11d116"
+      yellow: "#f67400"
+      blue: "#1d99f3"
+      magenta: "#9b59b6"
+      cyan: "#1abc9c"
+      white: "#fcfcfc"
+
+    # Bright colors
+    bright:
+      black: "#7f8c8d"
+      red: "#c0392b"
+      green: "#1cdc9a"
+      yellow: "#fdbc4b"
+      blue: "#3daee9"
+      magenta: "#8e44ad"
+      cyan: "#16a085"
+      white: "#ffffff"
+
+    # Dim colors
+    dim:
+      black: "#31363b"
+      red: "#783228"
+      green: "#17a262"
+      yellow: "#b65619"
+      blue: "#1b668f"
+      magenta: "#614a73"
+      cyan: "#186c60"
+      white: "#63686d"
+
+
+  # Colors (Blood Moon)
+  blood_moon: &blood_moon
+    # Default colors
+    primary:
+      background: '0x10100E'
+      foreground: '0xC6C6C4'
+
+    # Normal colors
+    normal:
+      black:   '0x10100E'
+      red:     '0xC40233'
+      green:   '0x009F6B'
+      yellow:  '0xFFD700'
+      blue:    '0x0087BD'
+      magenta: '0x9A4EAE'
+      cyan:    '0x20B2AA'
+      white:   '0xC6C6C4'
+
+    # Bright colors
+    bright:
+      black:   '0x696969'
+      red:     '0xFF2400'
+      green:   '0x03C03C'
+      yellow:  '0xFDFF00'
+      blue:    '0x007FFF'
+      magenta: '0xFF1493'
+      cyan:    '0x00CCCC'
+      white:   '0xFFFAFA'
+
+  # Colors (Nord)
+  nord: &nord
+    # Default colors
+    primary:
+      background: '0x2E3440'
+      foreground: '0xD8DEE9'
+
+    # Normal colors
+    normal:
+      black:   '0x3B4252'
+      red:     '0xBF616A'
+      green:   '0xA3BE8C'
+      yellow:  '0xEBCB8B'
+      blue:    '0x81A1C1'
+      magenta: '0xB48EAD'
+      cyan:    '0x88C0D0'
+      white:   '0xE5E9F0'
+
+    # Bright colors
+    bright:
+      black:   '0x4C566A'
+      red:     '0xBF616A'
+      green:   '0xA3BE8C'
+      yellow:  '0xEBCB8B'
+      blue:    '0x81A1C1'
+      magenta: '0xB48EAD'
+      cyan:    '0x8FBCBB'
+      white:   '0xECEFF4'
+
+  # Colors (One Dark)
+  one_dark: &one_dark
+    # Default colors
+    primary:
+      background: '0x1e2127'
+      foreground: '0xabb2bf'
+
+    # Normal colors
+    normal:
+      black:   '0x1e2127'
+      red:     '0xe06c75'
+      green:   '0x98c379'
+      yellow:  '0xd19a66'
+      blue:    '0x61afef'
+      magenta: '0xc678dd'
+      cyan:    '0x56b6c2'
+      white:   '0xabb2bf'
+
+    # Bright colors
+    bright:
+      black:   '0x5c6370'
+      red:     '0xe06c75'
+      green:   '0x98c379'
+      yellow:  '0xd19a66'
+      blue:    '0x61afef'
+      magenta: '0xc678dd'
+      cyan:    '0x56b6c2'
+      white:   '0xffffff'
+
+colors: *blood_moon
+
+window:
+  opacity: 0.9
+
+env:
+  TERM: xterm-256color
