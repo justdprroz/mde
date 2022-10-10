@@ -13,8 +13,8 @@ static const int systraypinningfailfirst = 1;   /* 1: if pinning fails, display 
 static const int showsystray        = 1;     /* 0 means no systray */
 static const int showbar            = 1;     /* 0 means no bar */
 static const int topbar             = 1;     /* 0 means bottom bar */
-static const char *fonts[]          = { "Caskaydia Cove Nerd Font:size=10", "Cascadia Code:size=10"};
-static const char dmenufont[]       = "Caskaydia Cove Nerd Font:size=14";
+static const char *fonts[]          = { "Monospace:size=10"};
+static const char dmenufont[]       = "Monospace:size=14";
 static const char col_gray1[]       = "#222222";
 static const char col_gray2[]       = "#444444";
 static const char col_gray3[]       = "#bbbbbb";
@@ -37,9 +37,10 @@ static const Rule rules[] = {
 	 *	WM_NAME(STRING) = title
 	 */
 	/* class                    instance    title       tags mask       isfloating   monitor */
-	{ "Firefox",                NULL,       NULL,       1 << 1,         0,              -1 },
+	{ "firefox",                NULL,       NULL,       1 << 1,         0,              -1 },
 	{ "EscapeFromTwilight",     NULL,       NULL,       0,              1,              -1 },
-    { "Code",                   NULL,       NULL,       1 << 2,         0,              -1 }
+    { "Code",                   NULL,       NULL,       1 << 2,         0,              -1 },
+    { "Qalculate-gtk", NULL, NULL, 0, 1, -1},
 
 };
 
@@ -75,9 +76,9 @@ static const char *filescmd[] = { "thunar", NULL };
 
 static const char *swap_wallpaper[] = { "wallpapergen", NULL };
 
-static const char *up_vol[]   = { "/usr/bin/pactl", "set-sink-volume", "alsa_output.pci-0000_2b_00.4.analog-stereo", "+5%",     NULL };
-static const char *down_vol[] = { "/usr/bin/pactl", "set-sink-volume", "alsa_output.pci-0000_2b_00.4.analog-stereo", "-5%",     NULL };
-static const char *mute_vol[] = { "/usr/bin/pactl", "set-sink-mute",   "alsa_output.pci-0000_2b_00.4.analog-stereo", "toggle",  NULL };
+static const char *up_vol[]   = { "/usr/bin/pactl", "set-sink-volume", "alsa_output.pci-0000_00_1f.3-platform-skl_hda_dsp_generic.HiFi__hw_sofhdadsp__sink", "+5%",     NULL };
+static const char *down_vol[] = { "/usr/bin/pactl", "set-sink-volume", "alsa_output.pci-0000_00_1f.3-platform-skl_hda_dsp_generic.HiFi__hw_sofhdadsp__sink", "-5%",     NULL };
+static const char *mute_vol[] = { "/usr/bin/pactl", "set-sink-mute",   "alsa_output.pci-0000_00_1f.3-platform-skl_hda_dsp_generic.HiFi__hw_sofhdadsp__sink", "toggle",  NULL };
 
 static const char *previous[] = { "/usr/bin/playerctl", "previous", NULL};
 static const char *play_pause[] = { "/usr/bin/playerctl", "play-pause", NULL};

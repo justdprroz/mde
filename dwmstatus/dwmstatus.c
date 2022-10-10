@@ -363,13 +363,10 @@ int main(void)
         free(load_info);
 
         // battery
-        // status = add_to_string(status, "\x08");
-        if (!strcmp(bat, " "))
-        {
-            char *battery_info = smprintf("   : %s ", bat);
-            status = add_to_string(status, battery_info);
-            free(battery_info);
-        };
+	status = add_to_string(status, "^c#FFE32E^");
+        char *battery_info = smprintf("   : %s ", bat);
+        status = add_to_string(status, battery_info);
+        free(battery_info);
 
         // time
         status = add_to_string(status, "^c#50B38D^");
